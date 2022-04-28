@@ -73,10 +73,10 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               const SizedBox(height: 130),
-              const Image(
-                  image: NetworkImage("http://www.urs.edu.ph/wp-content/uploads/about-us/university-seal/university-seal.png"),
-                  width: 200,
-                  height: 200,
+              Image.asset(
+                  'asset-images/urs.png',
+                height: 200,
+                width: 200,
               ),
               const SizedBox(height: 30),
               const Center (
@@ -104,7 +104,8 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
                     padding: MaterialStateProperty.all(const EdgeInsets.all(21)),
                   ),
-                  children: [const Text('SIGN IN',
+                  child:
+                    const Text('SIGN IN',
                     style: TextStyle(
                       color: Colors.white
                     ),
