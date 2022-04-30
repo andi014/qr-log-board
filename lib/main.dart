@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test2/Screens/homepage.dart';
 import 'package:test2/Screens/login.dart';
+import 'package:test2/Screens/signUp.dart';
 
 
 class MyAppBar extends StatelessWidget {
@@ -85,7 +86,7 @@ void main() {
   runApp(
      const MaterialApp(
       title: 'My app', // used by the OS task switcher
-      home: HomePage()
+      home: SignUpPage()
     ),
   );
 }

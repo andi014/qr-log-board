@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test2/Screens/generate.dart';
 import 'package:test2/Screens/scan.dart';
+import 'package:test2/Screens/signUp.dart';
 import './login.dart';
+import 'package:test2/Screens/signUp.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({ Key? key}) : super(key: key);
@@ -104,10 +106,34 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
                     padding: MaterialStateProperty.all(const EdgeInsets.all(21)),
                   ),
+
                   child:
                     const Text('SIGN IN',
                     style: TextStyle(
                       color: Colors.white
+                    ),
+                  )
+              ),
+              const SizedBox(height: 20.0),
+
+              TextButton(
+                  onPressed: null,
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                        const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.zero,
+                          side: BorderSide(color: Colors.white, width: 1),
+                        )
+                    ),
+
+                    backgroundColor: MaterialStateProperty.all<Color>(Colors.blueAccent),
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(21)),
+                  ),
+
+                  child:
+                  const Text('SIGN UP',
+                    style: TextStyle(
+                        color: Colors.black
                     ),
                   )
               )
