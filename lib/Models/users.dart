@@ -1,4 +1,6 @@
+import 'dart:ffi';
 
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
@@ -16,5 +18,19 @@ class User {
   create() {
     return FirebaseFirestore.instance
         .collection(collectionName);
+  }
+
+  Future<bool> allowSignup (String studentId) {
+    final data = FirebaseFirestore.instance
+        .collection(collectionName)
+        .where('studentId', isEqualTo: studentId)
+        .get();
+    return data.then((QuerySnapshot docs) {
+      if(docs.docs.isNotEmpty) {
+        return false;
+      } else {
+        return true;
+      }
+    });
   }
 }

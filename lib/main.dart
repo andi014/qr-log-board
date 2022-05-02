@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import './Screens/signup.dart';
-import './Screens/signup.dart';
 import './Screens/homepage.dart';
 import './Screens/scan.dart';
 import './Screens/generate.dart';

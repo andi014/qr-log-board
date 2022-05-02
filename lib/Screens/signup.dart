@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:test2/Models/users.dart';
 import 'package:test2/Widgets/toast.dart';
 import '../Widgets/textInput.dart';
 import '../Widgets/button.dart';
@@ -113,8 +114,12 @@ class _SignUpPageState extends State<SignUpPage> {
                             });
 
                             if(user['password']==password2) {
-                              await userCollection.add(user);
-                              Navigator.pushNamed(context, '/home', arguments: { 'successful_signup': true });
+                              if(await User().allowSignup(user['studentId'] as String)) {
+                                await userCollection.add(user);
+                                Navigator.pushNamed(context, '/home', arguments: { 'successful_signup': true });
+                              } else {
+                                showToast(context, 'User already exists', Colors.red);
+                              }
                             } else {
                               showToast(context, 'Password does not match', Colors.red);
                             }
