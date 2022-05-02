@@ -4,7 +4,7 @@ class ButtonSquare extends StatelessWidget {
   const ButtonSquare(this.text, this.widget, this.color, {Key? key}) : super(key: key);
 
   final String text;
-  final Widget? widget;
+  final Function widget;
   final Color color;
 
   @override
@@ -65,3 +65,31 @@ class ButtonRounded extends StatelessWidget {
     );
   }
 }
+
+class ButtonBack extends StatelessWidget {
+  const ButtonBack({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Material(
+          color: Colors.white,
+          child: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            color: Colors.grey,
+            onPressed: () => Navigator.pop(context),
+          ),
+        )
+      ],
+    );
+  }
+  // Widget build(BuildContext context) {
+  //   return IconButton(
+  //     onPressed: () => Navigator.pop(context),
+  //     icon: Icon(Icons.android),
+  //     color: Colors.indigo,
+  //     iconSize: 20,
+  //   );
+  // }
+  }
