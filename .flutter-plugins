@@ -7,3 +7,5 @@ firebase_core_web=/Users/sandy/dev_tools/flutter/.pub-cache/hosted/pub.dartlang.
 firebase_storage=/Users/sandy/dev_tools/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage-10.2.14/
 firebase_storage_web=/Users/sandy/dev_tools/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_storage_web-3.2.13/
 flutter_plugin_android_lifecycle=/Users/sandy/dev_tools/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-2.0.5/
+mobile_scanner=/Users/sandy/dev_tools/flutter/.pub-cache/hosted/pub.dartlang.org/mobile_scanner-1.0.0/
+qr_code_scanner=/Users/sandy/dev_tools/flutter/.pub-cache/hosted/pub.dartlang.org/qr_code_scanner-0.7.0/

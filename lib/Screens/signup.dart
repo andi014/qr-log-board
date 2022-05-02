@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:test2/Widgets/toast.dart';
 import '../Widgets/textInput.dart';
 import '../Widgets/button.dart';
 
@@ -24,15 +25,19 @@ class _SignUpPageState extends State<SignUpPage> {
   final pwController1 = TextEditingController();
   final pwController2 = TextEditingController();
 
-  String email = '';
-  String firstName = '';
-  String lastName = '';
-  String studentId = '';
-  String courseCode = '';
-  String section = '';
-  String yearLevel = '';
-  String sy = '';
-  String pw = '';
+  Map<String, String> user = {
+    'email': '',
+    'firstName': '',
+    'lastName': '',
+    'studentId': '',
+    'courseCode': '',
+    'section': '',
+    'yearLevel': '',
+    'password': '',
+    'sy': ''
+  };
+  String password2 ='';
+
 
   final _formKey = GlobalKey<FormState>();
 
@@ -85,8 +90,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                       child: Column(
                         children: [
-                          TextInputGrayBox(pwController1, 'Password', TextInputType.text),
-                          TextInputGrayBox(pwController2, 'Re-enter Password', TextInputType.text)
+                          TextInputFormGrayBox(pwController1, 'Password', TextInputType.text),
+                          TextInputFormGrayBox(pwController2, 'Re-enter Password', TextInputType.text)
                         ],
                       ),
                     ),
@@ -95,29 +100,24 @@ class _SignUpPageState extends State<SignUpPage> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             setState(() {
-                              email = emailController.text;
-                              firstName = firstNameController.text;
-                              lastName = lastNameController.text;
-                              studentId = studentIdController.text;
-                              courseCode = courseCodeController.text;
-                              section = sectionController.text;
-                              yearLevel = yearLevelController.text;
-                              sy = syController.text;
-                              pw = pwController1.text;
+                              user['email'] = emailController.text;
+                              user['firstName'] = firstNameController.text;
+                              user['lastName'] = lastNameController.text;
+                              user['studentId'] = studentIdController.text;
+                              user['courseCode'] = courseCodeController.text;
+                              user['section'] = sectionController.text;
+                              user['yearLevel'] = yearLevelController.text;
+                              user['sy'] = syController.text;
+                              user['password'] = pwController1.text;
+                              password2 = pwController2.text;
                             });
-                            // await userCollection.add({
-                            //   'email': email,
-                            //   'firstName': firstName,
-                            //   'lastName': lastName,
-                            //   'birthDay': birthDay,
-                            //   'studentId': studentId,
-                            //   'courseCode': courseCode,
-                            //   'section': section,
-                            //   'yearLevel': yearLevel,
-                            //   'password': pw,
-                            //   'sy': sy
-                            // });
-                            Navigator.pushNamed(context, '/home', arguments: { 'successful_signup': true });
+
+                            if(user['password']==password2) {
+                              await userCollection.add(user);
+                              Navigator.pushNamed(context, '/home', arguments: { 'successful_signup': true });
+                            } else {
+                              showToast(context, 'Password does not match', Colors.red);
+                            }
                           }
                         },
                         child: Text('Proceed', style: TextStyle(color: Colors.white, fontWeight: FontWeight.normal)),
