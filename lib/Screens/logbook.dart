@@ -29,14 +29,6 @@ class LogBook extends StatelessWidget {
                     SizedBox(height: 30),
                     Table(
                       border: TableBorder.symmetric(inside: BorderSide(width: 1, color: Colors.blue)),
-                      // TableBorder(
-                      //     verticalInside: BorderSide(width: 1, color: Colors.black, style: BorderStyle.solid),
-                      //     top: BorderSide(width: 1, color: Colors.black, style: BorderStyle.solid),
-                      //     bottom: BorderSide(width: 1, color: Colors.black, style: BorderStyle.solid),
-                      //     left: BorderSide(width: 1, color: Colors.black, style: BorderStyle.solid),
-                      //     right: BorderSide(width: 1, color: Colors.black, style: BorderStyle.solid),
-                      //     horizontalInside: BorderSide(width: 1, color: Colors.black, style: BorderStyle.solid),
-                      // ),
                       children: [
                         for (var record in data.docs) TableRow(children: [
                           TableCell(
