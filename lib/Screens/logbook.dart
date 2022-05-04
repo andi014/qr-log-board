@@ -10,9 +10,6 @@ class LogBook extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final args = (ModalRoute.of(context)?.settings.arguments ?? <String, dynamic>{}) as Map;
-    // QueryDocumentSnapshot user;
-
     final data = ModalRoute.of(context)!.settings.arguments as QuerySnapshot<Object>;
     if(data.docs.isNotEmpty) {
       return Scaffold(
