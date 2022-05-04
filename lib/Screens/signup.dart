@@ -18,7 +18,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final emailController = TextEditingController();
   final firstNameController = TextEditingController();
   final lastNameController = TextEditingController();
-  final studentIdController = TextEditingController();
+  final idController = TextEditingController();
   final courseCodeController = TextEditingController();
   final sectionController = TextEditingController();
   final yearLevelController = TextEditingController();
@@ -26,19 +26,8 @@ class _SignUpPageState extends State<SignUpPage> {
   final pwController1 = TextEditingController();
   final pwController2 = TextEditingController();
 
-  Map<String, String> user = {
-    'email': '',
-    'firstName': '',
-    'lastName': '',
-    'studentId': '',
-    'courseCode': '',
-    'section': '',
-    'yearLevel': '',
-    'password': '',
-    'sy': ''
-  };
+  Map<String, String> user = {};
   String password2 ='';
-
 
   final _formKey = GlobalKey<FormState>();
 
@@ -57,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Column(
                   children: <Widget>[
                     SizedBox(height: 40),
-                    ButtonBack(),
+                    NavigationButtons(),
                     Text('Create Account', style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 25
@@ -69,7 +58,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     TextInputFormBorderless(emailController, 'Email', 'ex. notrealuser@gmail.com', TextInputType.emailAddress),
                     TextInputFormBorderless(firstNameController, 'First Name', 'ex. Juan', TextInputType.text),
                     TextInputFormBorderless(lastNameController, 'Last Name', 'ex. Dela Cruz', TextInputType.text),
-                    TextInputFormBorderless(studentIdController, 'Student Number', 'ex. 111023213', TextInputType.number),
+                    TextInputFormBorderless(idController, 'Student Number', 'ex. 111023213', TextInputType.number),
                     TextInputFormBorderless(courseCodeController, 'Course Code', 'ex. CpE', TextInputType.text),
                     TextInputFormBorderless(sectionController, 'Section', 'ex. A', TextInputType.text),
                     TextInputFormBorderless(yearLevelController, 'Year Level', 'ex. 1', TextInputType.number),
@@ -104,17 +93,18 @@ class _SignUpPageState extends State<SignUpPage> {
                               user['email'] = emailController.text;
                               user['firstName'] = firstNameController.text;
                               user['lastName'] = lastNameController.text;
-                              user['studentId'] = studentIdController.text;
+                              user['id'] = idController.text;
                               user['courseCode'] = courseCodeController.text;
                               user['section'] = sectionController.text;
                               user['yearLevel'] = yearLevelController.text;
                               user['sy'] = syController.text;
                               user['password'] = pwController1.text;
+                              user['createdAt'] = DateTime.now().toString();
                               password2 = pwController2.text;
                             });
 
                             if(user['password']==password2) {
-                              if(await User().allowSignup(user['studentId'] as String)) {
+                              if(await User().allowSignup(user['id'] as String)) {
                                 await userCollection.add(user);
                                 Navigator.pushNamed(context, '/home', arguments: { 'successful_signup': true });
                               } else {

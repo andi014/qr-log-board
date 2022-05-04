@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:test2/Screens/scanResult.dart';
 import './Screens/signup.dart';
 import './Screens/homepage.dart';
 import './Screens/scan.dart';
 import './Screens/generate.dart';
-
+import './Screens/logbook.dart';
 
 
 Future<void> main() async {
@@ -19,8 +20,10 @@ Future<void> main() async {
         '/home': (context) => HomePage(),
         '/scan': (context) => ScanPage(),
         '/generate': (context) => GeneratePage(),
-        '/signup': (context) => SignUpPage()
-      },
-     ),
+        '/signup': (context) => SignUpPage(),
+        '/logbook': (context) => LogBook(),
+        '/scanResult': (context) => ScanResult()
+      }
+      )
   );
 }

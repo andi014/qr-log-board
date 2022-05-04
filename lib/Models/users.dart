@@ -1,28 +1,26 @@
-import 'dart:ffi';
-
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class User {
+  final String userCollection = 'users';
 
-  final String collectionName = 'users';
-
-  verify(String email, String password) {
+  verify(String id, String password) {
     return FirebaseFirestore.instance
-        .collection(collectionName)
-        .where('email', isEqualTo: email)
+        .collection(userCollection)
+        .where('id', isEqualTo: id)
         .where('password', isEqualTo: password)
         .get();
   }
 
-  create() {
-    return FirebaseFirestore.instance
-        .collection(collectionName);
+  getUserById(String id) {
+     return FirebaseFirestore.instance
+         .collection(userCollection)
+         .where('id', isEqualTo: id)
+         .get();
   }
 
   Future<bool> allowSignup (String studentId) {
     final data = FirebaseFirestore.instance
-        .collection(collectionName)
+        .collection(userCollection)
         .where('studentId', isEqualTo: studentId)
         .get();
     return data.then((QuerySnapshot docs) {
@@ -33,4 +31,18 @@ class User {
       }
     });
   }
+}
+
+class UserData {
+
+  final String email;
+  final String firstName;
+  final String lastName;
+  final String studentId;
+  final String courseCode;
+  final String section;
+  final String yearLevel;
+  final String sy;
+
+  UserData(this.email, this.firstName, this.lastName, this.studentId, this.courseCode, this.section, this.yearLevel, this.sy);
 }

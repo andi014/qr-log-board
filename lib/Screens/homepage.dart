@@ -1,11 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:test2/Screens/generate.dart';
-import 'package:test2/Screens/scan.dart';
 import '../Widgets/textInput.dart';
-import '../Widgets/button.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Models/users.dart';
 import '../Widgets/toast.dart';
 
@@ -19,11 +15,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  final emailController = TextEditingController();
+  final idNumberController = TextEditingController();
   final passwordController = TextEditingController();
   final Stream<QuerySnapshot> users = FirebaseFirestore.instance.collection('users').snapshots();
 
-  String email = '';
+  String idNumber = '';
   String password = '';
   final _formKey = GlobalKey<FormState>();
 
@@ -44,6 +40,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
           height: MediaQuery
@@ -107,18 +104,22 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     SizedBox(height: 30),
-                    TextInputFormGrayBox(emailController, 'Email', TextInputType.emailAddress),
+                    TextInputFormGrayBox(idNumberController, 'ID', TextInputType.text),
                     TextInputFormGrayBox(passwordController, 'Password', TextInputType.visiblePassword),
                     TextButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
-                            email = emailController.text;
+                            idNumber = idNumberController.text;
                             password = passwordController.text;
                           });
-                          await User().verify(email, password).then((QuerySnapshot docs) {
+                          await User().verify(idNumber, password).then((QuerySnapshot docs) {
                             if(docs.docs.isNotEmpty) {
-                              Navigator.pushNamed(context, '/generate');
+                              if(docs.docs[0]['id']=='admin') {
+                                Navigator.pushNamed(context, '/scan', arguments: { 'action': 'login' });
+                              } else {
+                                Navigator.pushNamed(context, '/generate', arguments: docs.docs[0]);
+                              }
                             } else {
                               Navigator.pushNamed(context, '/home', arguments: { 'invalid_cred': true });
                             }
@@ -137,7 +138,7 @@ class _HomePageState extends State<HomePage> {
                           backgroundColor: MaterialStateProperty.all<Color>(Colors.indigo)
                       ),
                     ),
-                    // LoginButton(emailController.text, passwordController.text),
+                    // LoginButton(idNumberController.text, passwordController.text),
                     SizedBox(height: 40),
                     GestureDetector(
                         child: Row(
