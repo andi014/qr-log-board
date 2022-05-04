@@ -60,35 +60,6 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(height: 120),
-                    // StreamBuilder<QuerySnapshot>(
-                    //   stream: users,
-                    //   builder: (
-                    //       BuildContext context,
-                    //       AsyncSnapshot<QuerySnapshot> snapshot
-                    //   ){
-                    //     if(snapshot.hasError) {
-                    //       return Text('Something went wrong');
-                    //     }
-                    //     if(snapshot.connectionState == ConnectionState.waiting) {
-                    //       return Text('Loading');
-                    //     }
-                    //     final data = snapshot.requireData;
-                    //     return ListView.builder(
-                    //         shrinkWrap: true,
-                    //         itemCount: data.size,
-                    //         itemBuilder: (context, index) {
-                    //           if (data.docs[index]['firstname'] != null ||
-                    //               data.docs[index]['lastname'] !=null ) {
-                    //             return Text('This is ${data
-                    //                 .docs[index]['firstname']} ${data
-                    //                 .docs[index]['lastname']}');
-                    //           }
-                    //           return SizedBox.shrink();
-                    //         }
-                    //     );
-                    //   },
-                    // ),
-                    // Text('${usersData['email']}'),
                     Image.asset('assets/urs.png',
                       width: 200,
                       height: 200,
